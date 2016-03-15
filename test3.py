@@ -3,7 +3,7 @@
 
 import sqlite3 as lite
 import sys
-from textblob import TextBlob
+#from textblob import TextBlob
 
 
 con = None
@@ -14,7 +14,7 @@ try:
         array = []
         cur = con.cursor()    
 	count = 0
-        for row in cur.execute('SELECT TweetText FROM Tweets2012'): 
+        for row in cur.execute("SELECT TweetText FROM Tweets2012 WHERE TweetText LIKE '%Romney%' or '%romney%'"): 
             count += 1
             array.append(row[0])
             print row[0]
