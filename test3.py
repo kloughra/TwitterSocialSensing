@@ -3,7 +3,7 @@
 
 import sqlite3 as lite
 import sys
-#from textblob import TextBlob
+from textblob import TextBlob
 
 
 con = None
@@ -14,7 +14,7 @@ try:
         array = []
         cur = con.cursor()    
 	count = 0
-        for row in cur.execute("SELECT TweetText FROM Tweets2012 WHERE TweetText LIKE '%Romney%' or '%romney%'"): 
+        for row in cur.execute("SELECT TweetText FROM Tweets2012 WHERE (Lower(TweetText) LIKE '%romney%') AND (Lower(TweetText) NOT LIKE '%obama%')"):
             count += 1
             array.append(row[0])
             print row[0]
@@ -23,9 +23,9 @@ try:
     sentiments = []
     avg = 0
 
-    for tweet in array:
+    for i in range(60,100):
 
-        polarity = TextBlob(tweet).sentiment.polarity
+        polarity = TextBlob(array[i]).sentiment.polarity
 
         sentiments.append(polarity)
         avg += polarity
@@ -45,3 +45,4 @@ finally:
 
 
 
+        
