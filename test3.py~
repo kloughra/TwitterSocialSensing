@@ -3,8 +3,6 @@
 
 import sqlite3 as lite
 import sys
-from textblob import TextBlob
-
 
 con = None
 
