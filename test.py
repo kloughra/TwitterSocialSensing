@@ -7,7 +7,7 @@ import sys
 con = None
 
 try:
-    con = lite.connect('tweeter.db')
+    con = lite.connect('tweeter_2016.db')
     with con:
         cur = con.cursor()    
         #cur.execute("CREATE TABLE Tweets(TweetId INT, TweetText TEXT)")
@@ -18,7 +18,7 @@ try:
 #        cur.execute('DELETE FROM Tweets2012 WHERE rowid NOT IN (SELECT MAX(rowid) FROM Tweets2012 GROUP BY TweetId)')
 #        con.commit()
 #        for row in cur.execute('SELECT TweetId, COUNT(*) c FROM Tweets2012 GROUP BY TweetId HAVING c > 1'):
-        for row in cur.execute('SELECT * FROM Tweets2012'): #ORDER BY TweetId'):
+        for row in cur.execute('SELECT * FROM Tweets2016'): #ORDER BY TweetId'):
 #       #for row in cur.execute('SELECT TweetId FROM Tweets WHERE TweetText="Yay I love Bernie!" ORDER BY TweetId'):
             count += 1
 #            print count
