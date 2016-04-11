@@ -6,7 +6,7 @@ es = Elasticsearch()
 
 
 # pass tweet into TextBlob                                                        
-tweets = ["good great wonderful awesome hi kt", "bad evil awful mitt romney hi kt"]
+tweets = ["Sununu: Obama campaign definitely behind Reids outlandish accusation"]
 sentiments = []
 avg = 0
 
@@ -17,4 +17,5 @@ for tweet in tweets:
     sentiments.append(polarity)
     avg += polarity
 
+print sentiments
 avg /= len(sentiments)
