@@ -49,7 +49,7 @@ class MyStreamListener(tweepy.StreamListener):
 myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
 
-myStream.filter(track=['Bernie','Sanders', 'bernie', 'sanders', 'Donald','Trump','donald','trump'])
+myStream.filter(track=['Bernie','Sanders', 'bernie', 'sanders','Trump','trump'])
 
 #print "New Filter:"
 #myStreamListener = MyStreamListener()
