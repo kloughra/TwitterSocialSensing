@@ -18,20 +18,45 @@ try:
             count += 1
             array.append(row[0])
             print row#[0]
+        #for row in cur.execute("SELECT TweetText FROM Tweets2016 WHERE ((Lower(TweetText) LIKE '%sanders%') OR (Lower(TweetText) LIKE '%bernie%')) AND (Lower(TweetText) NOT LIKE '%trump%')"):
+        #    count += 1
+        #    array.append(row[0])
+        #    #print row[0]
         print count
 
     sentiments = []
+    subjects = []
     avg = 0
+    savg = 0
+    countp = 0
+    countn = 0
+    countt = 0
 
-  # for i in range(60,100):
+    for i in range(len(array)):
 
-   #     polarity = TextBlob(array[i]).sentiment.polarity
+        polarity = TextBlob(array[i]).sentiment.polarity
+        sub = TextBlob(array[i]).sentiment.subjectivity
 
-    #    sentiments.append(polarity)
-     #   avg += polarity
+        if polarity > 0:
+            countp += 1
+        elif polarity < 0:
+            countn += 1
+        else:
+            countt += 1
 
-   # avg /= len(sentiments)
-   # print avg
+        subjects.append(sub)
+        sentiments.append(polarity)
+        avg += polarity
+        savg += sub
+
+    avg /= len(sentiments)
+    savg /= len(subjects)
+    print 'avg sentiment: ', avg
+    print 'avg subjectiv: ', savg
+    print 'positive coun: ', countp
+    print 'negative coun: ', countn
+    print 'zero count   : ', countt
+    
     
 except lite.Error, e:
     
