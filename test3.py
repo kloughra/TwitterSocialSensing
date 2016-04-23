@@ -3,35 +3,35 @@
 
 import sqlite3 as lite
 import sys
-from textblob import TextBlob
+#from textblob import TextBlob
 
 
 con = None
 
 try:
-    con = lite.connect('tweeter.db')
+    con = lite.connect('tweeter_2016.db')
     with con:
         array = []
         cur = con.cursor()    
 	count = 0
-        for row in cur.execute("SELECT TweetText FROM Tweets2012 WHERE (Lower(TweetText) LIKE '%romney%') AND (Lower(TweetText) NOT LIKE '%obama%')"):
+        for row in cur.execute("SELECT TweetText FROM Tweets2016_hillary"):# WHERE (Lower(TweetText) LIKE '%donald%') AND (Lower(TweetText) NOT LIKE '%trump%')"):
             count += 1
             array.append(row[0])
-            print row[0]
+            print row#[0]
         print count
 
     sentiments = []
     avg = 0
 
-    for i in range(60,100):
+  # for i in range(60,100):
 
-        polarity = TextBlob(array[i]).sentiment.polarity
+   #     polarity = TextBlob(array[i]).sentiment.polarity
 
-        sentiments.append(polarity)
-        avg += polarity
+    #    sentiments.append(polarity)
+     #   avg += polarity
 
-    avg /= len(sentiments)
-    print avg
+   # avg /= len(sentiments)
+   # print avg
     
 except lite.Error, e:
     

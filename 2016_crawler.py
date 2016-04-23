@@ -16,13 +16,13 @@ class MyStreamListener(tweepy.StreamListener):
     self.tweet_count = 0
     self.con = lite.connect('tweeter_2016.db')
     self.cur = self.con.cursor()
-    self.cur.execute("CREATE TABLE IF NOT EXISTS Tweets2016(TweetId INT, TweetText TEXT)")
+    self.cur.execute("CREATE TABLE IF NOT EXISTS Tweets2016_hillary(TweetId INT, TweetText TEXT)")
 
   def on_status(self, status):
       self.tweet_count += 1
       #print(status.id_str.encode("utf-8")+":"+status.text.encode("utf-8"))
       with self.con:
-          self.cur.execute("INSERT INTO Tweets2016 VALUES(?,?)",(int(status.id_str.encode("utf-8")),status.text))
+          self.cur.execute("INSERT INTO Tweets2016_hillary VALUES(?,?)",(int(status.id_str.encode("utf-8")),status.text))
       if self.tweet_count % 500 == 0:
           print self.tweet_count;
       #print ""
@@ -49,7 +49,7 @@ class MyStreamListener(tweepy.StreamListener):
 myStreamListener = MyStreamListener()
 myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
 
-myStream.filter(track=['Bernie','Sanders', 'bernie', 'sanders','Trump','trump'])
+myStream.filter(track=['Hillary','Clinton', 'hillary', 'clinton','Trump','trump'])
 
 #print "New Filter:"
 #myStreamListener = MyStreamListener()
